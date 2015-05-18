@@ -1,0 +1,14 @@
+---
+- name: make sure .aws directory exists
+  file:
+    path: /root/.aws
+    state: directory
+    mode: 0600
+
+- name: create credentials file
+  template:
+    src: aws_credentials.j2
+    dest: /root/.aws/credentials
+    mode: 0600
+
+- include: cloudwatch-logs.yml
